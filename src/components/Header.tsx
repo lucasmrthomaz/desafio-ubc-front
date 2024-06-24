@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const Header: React.FC = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Eleventh navbar example">
