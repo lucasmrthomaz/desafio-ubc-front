@@ -11,7 +11,7 @@ Tecnologias envolvidas
 ![image](https://github.com/lucasmrthomaz/desafio-ubc-front/assets/11547508/544274d0-802d-4d6f-954a-dcb71c4517dd)
 
 # Tela após login
-![image](https://github.com/lucasmrthomaz/desafio-ubc-front/assets/11547508/057bf949-f8c0-4c78-95dc-b4fb5a2b898b)
+![image](https://github.com/lucasmrthomaz/desafio-ubc-front/assets/11547508/cae921df-c969-401b-ac99-dc2baece0ba5)
 
 # Tela de novo/editar
 ![image](https://github.com/lucasmrthomaz/desafio-ubc-front/assets/11547508/c744db27-9882-4cc1-a80d-7bc309218961)
