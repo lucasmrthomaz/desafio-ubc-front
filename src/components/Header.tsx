@@ -1,4 +1,14 @@
+import { useEffect, useState } from "react";
+
 const Header: React.FC = () => {
+
+  let [usuario, setUsuario] = useState('');
+  
+  useEffect( () => {
+    const usuarioLogado = localStorage.getItem('username');
+    setUsuario(usuarioLogado ? usuarioLogado : '');
+  })
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Eleventh navbar example">
       <div className="container-fluid">
@@ -20,7 +30,7 @@ const Header: React.FC = () => {
             </li>
           </ul>
           <small>
-            Olá, <b>LUCAS</b>
+            Olá, <b>{usuario}</b>
           </small>
         </div>
       </div>

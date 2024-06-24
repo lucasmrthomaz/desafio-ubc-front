@@ -1,15 +1,26 @@
-import Head from "next/head";
 import Container from "react-bootstrap/Container";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import StudentList from "@/components/StudentList";
+import { useEffect, useState } from "react";
+import LoginForm from "@/components/LoginForm";
 
 export default function Home() {
+
+  const [loginToken, setLoginToken] = useState('');
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      window.location.href = '/entrar';
+    } else {
+      setLoginToken(token)
+    }
+  }, [])
+
   return (
     <>
       <Container as="main" className="py-4 px-3 mx-auto">
-          <StudentList></StudentList>
-      </Container>   
+        {loginToken ? <StudentList></StudentList> : <LoginForm></LoginForm>}
+      </Container>
     </>
   );
 }
