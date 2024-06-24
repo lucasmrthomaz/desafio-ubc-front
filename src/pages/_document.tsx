@@ -12,8 +12,6 @@ export default function Document() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <Header />
-      
       <body>
         <Main />
         <NextScript />
@@ -23,3 +21,11 @@ export default function Document() {
     </Html>
   );
 }
+function useState(arg0: string): [any, any] {
+  throw new Error("Function not implemented.");
+}
+
+function useEffect(arg0: () => void) {
+  throw new Error("Function not implemented.");
+}
+

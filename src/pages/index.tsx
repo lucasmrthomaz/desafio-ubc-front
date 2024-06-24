@@ -2,6 +2,7 @@ import Container from "react-bootstrap/Container";
 import StudentList from "@/components/StudentList";
 import { useEffect, useState } from "react";
 import LoginForm from "@/components/LoginForm";
+import Header from "@/components/Header";
 
 export default function Home() {
 
@@ -18,6 +19,7 @@ export default function Home() {
 
   return (
     <>
+      <Header />
       <Container as="main" className="py-4 px-3 mx-auto">
         {loginToken ? <StudentList></StudentList> : <LoginForm></LoginForm>}
       </Container>

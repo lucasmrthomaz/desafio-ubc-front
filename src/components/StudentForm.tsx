@@ -1,6 +1,8 @@
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
 import { Alert, Badge, Container } from "react-bootstrap";
+import router from "next/router";
 
 export default function StudentForm() {
     const url = 'http://127.0.0.1:5185/api/students';
@@ -38,16 +40,17 @@ export default function StudentForm() {
                 throw new Error('Houve um erro ao inserir.');
             }
             console.log(await response.json());
-            setMensagem('Novo estudante inserido com sucesso.');
+            window.alert('Novo estudante inserido com sucesso!');
+            router.push('/')
         } catch (error) {
-            setMensagem(Error.toString());
+            setMensagem("Erro ao inserir novo estudante: " + error);
         }
     };
 
     return (
         <Container className="w-50">
-             <Link href={'/'}><button className='btn btn-secondary my-5'> Voltar </button></Link>
-        
+            <Link href={'/'}><button className='btn btn-secondary my-5'> Voltar </button></Link>
+
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="nome" className="form-label">Nome</label>
@@ -82,9 +85,10 @@ export default function StudentForm() {
                     <input required type="date" className="form-control" id="dataNascimento" value={dataNascimento} onChange={(event) => setDataNascimento(event.target.value)} />
                 </div>
 
-                <Alert className="mt-2 text-center"> {mensagem} </Alert>
+                {mensagem !== '' && <Alert variant="danger">{mensagem} </Alert>}
+
                 <button type="submit" className="btn btn-primary">Confirmar</button>
-            </form>   
+            </form>
         </Container>
     )
 }

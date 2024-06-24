@@ -18,15 +18,34 @@ export default function StudentList() {
     fetchData();
   }, []);
 
- // Utility function to format the date
- function formatDate(dateString) {
+  // Utility function to format the date
+  function formatDate(dateString) {
     const date = new Date(dateString);
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
     return `${day}/${month}/${year}`;
   }
-  
+
+  // create function to delete one student by id
+  const deleteStudent = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5185/api/students/${id}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        alert('Erro ao deletar');
+        throw new Error('Failed to delete student');
+      } else {
+        window.location.reload();
+        window.alert('Estudante deletado com sucesso!');
+      }
+    } catch (error) {
+      console.error('There was an error deleting the student!', error);
+    }
+
+  }
+
   return (
     <div>
       <h1>Estudantes</h1>
@@ -58,7 +77,7 @@ export default function StudentList() {
               <td>{nomeMae}</td>
               <td>{formatDate(dataNascimento)}</td>
               <td>
-                <a href="#">Editar</a> | <a href="#">Excluir</a>
+                <a href="#">Editar</a> | <a href="#" onClick={() => deleteStudent(id)}>Excluir</a>
               </td>
             </tr>
           ))}

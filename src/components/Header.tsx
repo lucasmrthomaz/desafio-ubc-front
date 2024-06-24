@@ -1,13 +1,22 @@
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const Header: React.FC = () => {
+export default function Header() {
 
   let [usuario, setUsuario] = useState('');
-  
-  useEffect( () => {
-    const usuarioLogado = localStorage.getItem('username');
-    setUsuario(usuarioLogado ? usuarioLogado : '');
-  })
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const username = localStorage.getItem('user');
+      setUsuario(username ? username : '');
+    }
+  }, [])
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.location.reload();
+  }
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Eleventh navbar example">
@@ -20,22 +29,15 @@ const Header: React.FC = () => {
         <div className="collapse navbar-collapse" id="navbarsExample09">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Estudantes</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Gerenciar Usuários</a>
+              <a className="nav-link active" aria-current="page" href="/"> Home </a>
             </li>
           </ul>
-          <small>
-            Olá, <b>{usuario}</b>
+          <small className="m-3">
+            Olá, <b className="text-uppercase"> {usuario ? usuario : 'Convidado'} </b>
           </small>
+          <Link href="#" onClick={logout} ><button className="btn btn-secondary"> Sair </button></Link>
         </div>
       </div>
     </nav>
   );
 };
-
-export default Header;

@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router'
+import { Alert } from 'react-bootstrap';
 
 export default function Login() {
   const [usuario, setusuario] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
 
     try {
       const response = await fetch('http://localhost:5185/api/auth/login', {
@@ -27,18 +26,16 @@ export default function Login() {
       const data = await response.json();
       console.log(data);
 
-      // Save token to localStorage
       localStorage.setItem('token', data.token);
-      localStorage.setItem('username', usuario);
-      
-      console.log('Login successful', data);
+      localStorage.setItem('user', data.user);
 
-      // Redirect to home
       router.push('/')
 
     } catch (error) {
-      console.error('There was an error logging in!', error);
-      setError('Failed to login. Please check your usuario and password.');
+      console.error('Houve um erro na tentativa de login: ', error);
+      var loginMessage = document.getElementById("loginMessage");
+      loginMessage.innerHTML = "<b> Nome de usuário/senha inválidos. </b>";
+      loginMessage?.style.setProperty('color', 'red');
     }
   };
 
@@ -47,13 +44,17 @@ export default function Login() {
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card">
-            <div className="card-header">
-              <h3 className="text-center">Login</h3>
+            <div className="card-header text-center">
+              <h3 className="text-center">
+                <img src='https://www.ubc.org.br/images/logo_principal.png' height={"64px"}></img> <br />
+                Entrar
+              </h3>
+              <Alert id="loginMessage">Por favor, faca o login.</Alert>
             </div>
             <div className="card-body">
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="usuario">Usuario</label>
+                  <label htmlFor="usuario">Usuário</label>
                   <input
                     type="text"
                     className="form-control"
