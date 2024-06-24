@@ -1,16 +1,17 @@
-# Bootstrap w/ React
+# Desafio UBC - Frontend (React)
 
-Include [Bootstrap](https://getbootstrap.com)'s source Sass with [React](https://react.dev/) and [Next.js](https://nextjs.org/). Also includes [React Bootstrap](https://react-bootstrap.github.io/)
+Tecnologias envolvidas
+- ReactJS + NEXT.JS 14
+- Jest (tests)
 
-## Edit in browser
+# Tela de login
+![image](https://github.com/lucasmrthomaz/desafio-ubc-front/assets/11547508/0a2f8eb0-45c0-48fc-b394-0772f5e44e68)
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/twbs/examples/tree/main/react-nextjs?file=src%2Fpages%2Findex.tsx)
+> Mensagem de usuário/senha inválidos
+![image](https://github.com/lucasmrthomaz/desafio-ubc-front/assets/11547508/544274d0-802d-4d6f-954a-dcb71c4517dd)
 
-## How to use
+# Tela após login
+![image](https://github.com/lucasmrthomaz/desafio-ubc-front/assets/11547508/057bf949-f8c0-4c78-95dc-b4fb5a2b898b)
 
-```sh
-git clone https://github.com/twbs/examples.git
-cd examples/react-nextjs/
-npm install
-npm start
-```
+# Tela de novo/editar
+![image](https://github.com/lucasmrthomaz/desafio-ubc-front/assets/11547508/c744db27-9882-4cc1-a80d-7bc309218961)
