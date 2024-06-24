@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function StudentList() {
+    const [students, setStudents] = React.useState([]);
 
-    const url = 'http://localhost:5185/api/students';
-    const [students, setStudents] = useState([]);
-
-    useEffect(() => {
-        axios.get(url)
-            .then(response => {
-                setStudents(response.data);
-            })
-            .catch(error => {
+    React.useEffect(() => {
+        (async () => {
+            try {
+                const response = await fetch('http://localhost:5185/api/students');
+                const data = await response.json();
+                setStudents(data);
+            } catch (error) {
                 console.error('There was an error fetching the students!', error);
-            });
+            }
+        })();
     }, []);
 
     return (
@@ -35,26 +35,24 @@ export default function StudentList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {
-                        students.map((student, index) => (
-                            <tr key={index}>
-                                <th scope="row">{student.id}</th>
-                                <td>{student.nome}</td>
-                                <td>{student.idade}</td>
-                                <td>{student.serie}</td>
-                                <td>{student.notaMedia}</td>
-                                <td>{student.endereco}</td>
-                                <td>{student.nomePai}</td>
-                                <td>{student.nomeMae}</td>
-                                <td>{student.dataNascimento}</td>
-                                <td>
-                                    <a href="#">Editar</a> | <a href="#">Excluir</a>
-                                </td>
-                            </tr>
-                        ))}
+                    {students.map((student, index) => (
+                        <tr key={index}>
+                            <td>{student.id}</td>
+                            <td>{student.nome}</td>
+                            <td>{student.idade}</td>
+                            <td>{student.serie}</td>
+                            <td>{student.notaMedia}</td>
+                            <td>{student.endereco}</td>
+                            <td>{student.nomePai}</td>
+                            <td>{student.nomeMae}</td>
+                            <td>{student.dataNascimento}</td>
+                            <td>
+                                <a href="#">Editar</a> | <a href="#">Excluir</a>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
-
 
             <small className='my-2 mx-2 float-end'>Total de : <b>{students.length}</b> entrada(s) </small>
 
