@@ -1,8 +1,15 @@
-# Desafio UBC - Frontend (React)
+# Desafio UBC - .NET6 + React
 
 Tecnologias envolvidas
 - ReactJS + NEXT.JS 14
+- Bootstrap 5 , Fontawesome
 - Jest (tests)
+
+# Rodar localmente
+- npm install --force
+> Esteja com o backend rodando
+- npm start
+> O projeto ira iniciar na porta 3000
 
 # Tela de login
 ![image](https://github.com/lucasmrthomaz/desafio-ubc-front/assets/11547508/0a2f8eb0-45c0-48fc-b394-0772f5e44e68)
