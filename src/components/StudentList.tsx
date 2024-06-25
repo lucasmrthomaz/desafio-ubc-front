@@ -23,14 +23,14 @@ export default function StudentList() {
     fetchData();
   }, []);
 
- 
+
   /**
    * Formats a given date string into a specific format.
    *
    * @param {string} dateString - The date string to format.
    * @return {string} The formatted date in the format dd/mm/yyyy.
    */
-  const formatDate = function (dateString:string) {
+  const formatDate = function (dateString: string) {
     const date = new Date(dateString);
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -39,13 +39,13 @@ export default function StudentList() {
   }
 
 
-/**
- * Deletes a student by their ID.
- *
- * @param {number} id - The ID of the student to delete.
- * @return {Promise<void>} - A promise that resolves when the student is successfully deleted, or rejects with an error if the deletion fails.
- */
-  const deleteStudent = async (id:number) => {
+  /**
+   * Deletes a student by their ID.
+   *
+   * @param {number} id - The ID of the student to delete.
+   * @return {Promise<void>} - A promise that resolves when the student is successfully deleted, or rejects with an error if the deletion fails.
+   */
+  const deleteStudent = async (id: number) => {
     try {
       const response = await fetch(`http://localhost:5185/api/students/${id}`, {
         method: 'DELETE',
@@ -65,7 +65,7 @@ export default function StudentList() {
 
   return (
     <div className='text-center'>
-    <h1>Estudantes</h1>
+      <h1>Estudantes</h1>
       <Link href={'/gerenciar'}><button className='btn btn-primary m-3'><FontAwesomeIcon icon={faAdd} /> Cadastrar </button></Link>
       <table className="table">
         <thead>
@@ -95,8 +95,8 @@ export default function StudentList() {
               <td>{nomeMae}</td>
               <td>{formatDate(dataNascimento)}</td>
               <td>
-              <button className="btn btn-danger" onClick={() => deleteStudent(id)}> <FontAwesomeIcon icon={faTrash} /> </button>
-              <button className='btn btn-warning mx-2' onClick={() => window.location.href = `/gerenciar/?id=${id}&action=edit`}>   <FontAwesomeIcon icon={faEdit} /> </button>    
+                <button className="btn btn-danger" onClick={() => deleteStudent(id)}> <FontAwesomeIcon icon={faTrash} /> </button>
+                <button className='btn btn-warning mx-2' onClick={() => window.location.href = `/gerenciar/?id=${id}&action=edit`}>   <FontAwesomeIcon icon={faEdit} /> </button>
               </td>
             </tr>
           ))}
@@ -105,7 +105,7 @@ export default function StudentList() {
 
       <small className='my-2 mx-2 float-end'>Total de : <b>{students.length}</b> entrada(s) </small>
 
-      
+
     </div>
   );
 }
