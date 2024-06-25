@@ -4,6 +4,11 @@ import { useEffect, useState } from "react";
 import LoginForm from "@/components/LoginForm";
 import Header from "@/components/Header";
 
+/**
+ * Renders the Home component which displays either the StudentList or the LoginForm based on the presence of a login token.
+ *
+ * @return {JSX.Element} The rendered Home component.
+ */
 export default function Home() {
 
   const [loginToken, setLoginToken] = useState('');

@@ -2,12 +2,23 @@ import { useState } from 'react';
 import { useRouter } from 'next/router'
 import { Alert } from 'react-bootstrap';
 
-export default function Login() {
-  const [usuario, setusuario] = useState('');
-  const [password, setPassword] = useState('');
+/**
+ * Renders a login form component.
+ *
+ * @return {JSX.Element} The login form component.
+ */
+export default function Login(): JSX.Element {
+  const [usuario, setUsuario] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const router = useRouter()
 
-  const handleSubmit = async (e) => {
+  /**
+   * Handles the form submission for the login form.
+   *
+   * @param {React.FormEvent<HTMLFormElement>} e - The event object representing the form submission.
+   * @return {Promise<void>} A promise that resolves when the login is successful or rejects with an error.
+   */
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
 
     try {
@@ -32,10 +43,16 @@ export default function Login() {
       router.push('/')
 
     } catch (error) {
+
       console.error('Houve um erro na tentativa de login: ', error);
-      var loginMessage = document.getElementById("loginMessage");
-      loginMessage.innerHTML = "<b> Nome de usuário/senha inválidos. </b>";
-      loginMessage?.style.setProperty('color', 'red');
+
+      const loginMessage = document.getElementById("loginMessage");
+
+      if (loginMessage) {
+        loginMessage.innerHTML = "<b> Nome de usuário/senha inválidos. </b>";
+        loginMessage.style.setProperty('color', 'red');
+      }
+
     }
   };
 
@@ -49,7 +66,7 @@ export default function Login() {
                 <img src='https://www.ubc.org.br/images/logo_principal.png' height={"64px"}></img> <br />
                 Entrar
               </h3>
-              <Alert id="loginMessage">Por favor, faca o login.</Alert>
+              <Alert id="loginMessage">Por favor, faça o login.</Alert>
             </div>
             <div className="card-body">
               <form onSubmit={handleSubmit}>
@@ -60,7 +77,7 @@ export default function Login() {
                     className="form-control"
                     id="usuario"
                     value={usuario}
-                    onChange={(e) => setusuario(e.target.value)}
+                    onChange={(e) => setUsuario(e.target.value)}
                     required
                   />
                 </div>
