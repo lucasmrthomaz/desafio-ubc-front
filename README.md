@@ -1,4 +1,4 @@
-# Desafio UBC - .NET6 + React
+# Desafio UBC .NET6 + React
 
 Tecnologias envolvidas
 - ReactJS + NEXT.JS 14
